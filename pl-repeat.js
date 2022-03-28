@@ -60,16 +60,7 @@ class PlRepeat extends PlElement {
         if (mutation.init) return;
         let [, index, ...rest] = mutation.path.split('.');
         switch (mutation.action) {
-            case 'upd':
-                if (Number.isInteger(+index) && +index >= 0) {
-                    // ищем клон
-                    let clone = this.clones[+index];
-                    let path = [this.as, ...rest].join('.');
-                    clone._ti.applyEffects({ ...mutation, path });
-                } else if (index === undefined) {
-                    this.dirtyRefresh()
-                }
-                break;
+
             case 'splice':
                 // deleted
                 // ensure that path for this repeater
@@ -83,6 +74,17 @@ class PlRepeat extends PlElement {
                     let clones = this.renderItems(mutation.added, sibling || this);
                     this.clones.splice(mutation.index, 0, ...clones);
                     this.dispatchEvent(new CustomEvent('dom-changed', { bubbles: true, composed: true }));
+                    break;
+                }
+            // noinspection FallThroughInSwitchStatementJS
+            case 'upd':
+                if (Number.isInteger(+index) && +index >= 0) {
+                    // ищем клон
+                    let clone = this.clones[+index];
+                    let path = [this.as, ...rest].join('.');
+                    clone._ti.applyEffects({ ...mutation, path });
+                } else if (index === undefined) {
+                    this.dirtyRefresh()
                 }
                 break;
         }
