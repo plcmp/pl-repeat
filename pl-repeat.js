@@ -36,7 +36,7 @@ class PlRepeat extends PlElement {
             let nodes = [...inst.childNodes];
             inst._hti = this._hti;
             ctx._ti = inst;
-            inst.attach({ ...ctx, root: this.parentNode }, sibling, this._pti);
+            inst.attach({ ...ctx, root: this.parentNode }, sibling, this._pti, this._hti);
             let clone = { dom: nodes, _ti: inst };
             ctx.clone = clone;
             nodes.forEach(n => { n._io = this.oTpl; n._ctx = ctx; })
