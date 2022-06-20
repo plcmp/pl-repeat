@@ -23,6 +23,6 @@
         }
     ],
     "dependencies": {
-        "polylib": "^1.0.0"
+        "polylib": "^1.1.0"
     }
 }
