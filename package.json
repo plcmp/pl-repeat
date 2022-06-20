@@ -1,6 +1,6 @@
 {
     "name": "@plcmp/pl-repeat",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Components for cloning elemenents in template.",
     "main": "pl-repeat.js",
     "repository": {
@@ -23,6 +23,6 @@
         }
     ],
     "dependencies": {
-        "polylib": "^1.0.0"
+        "polylib": "^1.1.0"
     }
 }
