@@ -14,9 +14,10 @@ class PlRepeat extends PlElement {
     connectedCallback() {
         super.connectedCallback();
         console.log('deprecated pl-repeat')
-        this.sTpl = [...this.childNodes].find( n => n.nodeType === document.COMMENT_NODE && n.textContent.startsWith('tpl:'))?._tpl;
+        let tplEl = [...this.childNodes].find( n => n.nodeType === document.COMMENT_NODE && n.textContent.startsWith('tpl:'));
+        this.sTpl = tplEl?._tpl;
         this._ti = new TemplateInstance(PlRepeat.repTpl);
-        this._ti.attach(null, this, this);
+        this._ti.attach(null, this, [this, ...tplEl._hctx]);
     }
 
 }
